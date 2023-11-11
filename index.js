@@ -2,6 +2,14 @@ const express = require('express'),
     morgan = require('morgan'),
     uuid = require('uuid');
 
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect('mongodb://localhost:27017/moviesone', { useNewUrlParser: true, useUnifiedTopology: true });
+
 const bodyParser = require('body-parser'),
     methodOverride = require('method-override');
 
@@ -11,54 +19,54 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(methodOverride());
 
-let movies = [
-    {
-        title:  'Howls Moving Castle',
-        director:  'Hayao Miyazaki'
-    },
-    {
-        title: 'Parasite',
-        director: 'Bong Joon-ho'
-    },
-    {
-        title: 'Eternal Sunshine of the Spotless Mind',
-        director: 'Michael Gondry'
-    }
-];
+// let movies = [
+//     {
+//         title:  'Howls Moving Castle',
+//         director:  'Hayao Miyazaki'
+//     },
+//     {
+//         title: 'Parasite',
+//         director: 'Bong Joon-ho'
+//     },
+//     {
+//         title: 'Eternal Sunshine of the Spotless Mind',
+//         director: 'Michael Gondry'
+//     }
+// ];
 
-let genres = [
-    {
-        name: 'Thriller',
-        description: 'An atmosphere of menace and sudden violence, such as crime and murder, characterize thrillers. The tension usually arises when the character(s) is placed in a dangerous situation, or a trap from which escaping seems impossible.'
-    },
-    {
-        name: 'Fantasy',
-        description: 'Fantasy films are films that belong to the fantasy genre with fantastic themes, usually magic, supernatural events, mythology, folklore, or exotic fantasy worlds. The genre is considered a form of speculative fiction alongside science fiction films and horror films, although the genres do overlap.'
-    }
-];
+// let genres = [
+//     {
+//         name: 'Thriller',
+//         description: 'An atmosphere of menace and sudden violence, such as crime and murder, characterize thrillers. The tension usually arises when the character(s) is placed in a dangerous situation, or a trap from which escaping seems impossible.'
+//     },
+//     {
+//         name: 'Fantasy',
+//         description: 'Fantasy films are films that belong to the fantasy genre with fantastic themes, usually magic, supernatural events, mythology, folklore, or exotic fantasy worlds. The genre is considered a form of speculative fiction alongside science fiction films and horror films, although the genres do overlap.'
+//     }
+// ];
 
-let directors = [
-    {
-        name: 'Hayao Miyazaki',
-        birthyear: '1941'
-    },
-    {
-        name: 'Bong Joon-ho',
-        birthyear: '1969'
-    },
-    {
-        name: 'Michael Gondry',
-        birthyear: '1963'
-    }
-];
+// let directors = [
+//     {
+//         name: 'Hayao Miyazaki',
+//         birthyear: '1941'
+//     },
+//     {
+//         name: 'Bong Joon-ho',
+//         birthyear: '1969'
+//     },
+//     {
+//         name: 'Michael Gondry',
+//         birthyear: '1963'
+//     }
+// ];
 
-let users = [
-    {
-        username: 'Miguel',
-        password: 'Password123',
-        favoriteMovies: ['Parasite']
-    }
-];
+// let users = [
+//     {
+//         username: 'Miguel',
+//         password: 'Password123',
+//         favoriteMovies: ['Parasite']
+//     }
+// ];
 
 app.get('/', (req, res) => {
     res.send('Welcome to Fukuis Flixes');
